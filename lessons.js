@@ -1,0 +1,155 @@
+// 커리큘럼: 인기 영어회화 채널들이 공통으로 다루는 주제 순서를 참고해 새로 작성한 문장들
+// 각 문장: [영어, 한국어 뜻, 발음 포인트]
+const LESSONS = [
+{t:"인사와 스몰토크", sum:"가볍게 안부를 묻고 답하며 대화를 시작·마무리하는 표현", s:[
+["How's it going?","요즘 어때요?","How's it → '하우짓'처럼 이어서. going 끝 g는 약하게"],
+["Not bad. How about you?","나쁘지 않아요. 당신은요?","about you → '어바웃츄' (t+y가 '츄' 소리)"],
+["Long time no see.","오랜만이에요.","time과 see에 강세. Long의 L은 혀끝을 윗잇몸에"],
+["What have you been up to?","요즘 뭐 하고 지냈어요?","What have you → '와러뷰', up to → '업투' 연결"],
+["I've been pretty busy with work.","일 때문에 꽤 바빴어요.","pretty → '프리디'(t를 약한 d로). I've의 v는 윗니를 아랫입술에"],
+["It was nice talking to you.","얘기 즐거웠어요.","nice에 강세, talking to → '토킹투'"]]},
+{t:"직장에서 자기소개", sum:"내 역할과 경력을 소개하고 협업을 제안하는 표현", s:[
+["Let me introduce myself.","제 소개를 하겠습니다.","Let me → '레미' (t 탈락)"],
+["I'm in charge of the production team.","생산팀을 맡고 있습니다.","charge는 입술을 내밀고 '챠ㄹ지'. of the → '어버' 약하게"],
+["I've been with the company for ten years.","이 회사에서 10년 일했습니다.","been은 '빈' 짧게, for는 '퍼'로 약하게"],
+["My role is to make sure everything runs smoothly.","모든 게 원활하게 돌아가도록 하는 게 제 역할입니다.","role 끝 L은 혀끝을 올려 마무리. smoothly의 th는 혀를 이 사이에"],
+["Feel free to reach out if you need anything.","필요한 게 있으면 언제든 연락 주세요.","Feel free의 f는 윗니를 아랫입술에. reach out → '리치아웃' 연결"],
+["I'm looking forward to working with you.","함께 일하길 기대합니다.","forward to → '포워투', working의 w는 입술을 둥글게"]]},
+{t:"카페·식당 주문", sum:"주문하고, 요청하고, 계산하는 실전 표현", s:[
+["Can I get a medium latte, please?","미디엄 라떼 주시겠어요?","Can I get a → '캐나이게러'"],
+["For here or to go?","드시고 가세요, 가져가세요?","here or → '히어오어' 이어서, go를 올려 말하기"],
+["Could I have the check, please?","계산서 주시겠어요?","Could I → '쿠다이'"],
+["I'd like it without onions.","양파 빼고 주세요.","like it → '라이킷', without의 th는 목을 울리는 소리"],
+["What do you recommend?","추천해 주실 게 있나요?","What do you → '워루유', recommend는 'mend'에 강세"],
+["Can we split the bill?","나눠서 계산할 수 있나요?","split의 sp는 '스쁠'처럼 된소리"]]},
+{t:"다시 묻기·확인하기", sum:"못 알아들었을 때 당황하지 않고 다시 묻고 확인하는 표현", s:[
+["Sorry, could you say that again?","죄송한데 다시 말씀해 주시겠어요?","say that again → '세이대러겐'"],
+["Could you speak a little more slowly?","조금만 천천히 말씀해 주시겠어요?","little → '리를', slowly는 L을 두 번 분명히"],
+["What do you mean by that?","그게 무슨 뜻이에요?","mean by that을 한 덩어리로. that은 혀를 이 사이에"],
+["Just to make sure I understand.","제가 제대로 이해했는지 확인하자면요.","Just to → '저스투', make sure → '메익슈어'"],
+["So you're saying we need more time?","그러니까 시간이 더 필요하다는 말씀이죠?","you're는 '유어' 짧게, 끝을 올려 질문 억양"],
+["Could you spell that for me?","철자를 불러 주시겠어요?","spell의 sp는 된소리, for me → '퍼미'"]]},
+{t:"전화 영어", sum:"전화 걸기·받기·메시지 남기기·연결 문제 표현", s:[
+["Hi, this is Mike from ABC Company.","안녕하세요, ABC사의 마이크입니다.","this is → '디시즈' 연결"],
+["May I speak to Mr. Johnson?","존슨 씨와 통화할 수 있을까요?","speak to → '스삐익투'"],
+["He's not available right now.","지금 자리에 안 계십니다.","available은 'vai'에 강세, right now의 t는 멈추듯"],
+["Can I take a message?","메시지 남겨 드릴까요?","take a → '테이커'"],
+["I'll call you back in ten minutes.","10분 후에 다시 전화드릴게요.","call you back → '콜유백', I'll 끝 L 살리기"],
+["You're breaking up. Can you hear me?","소리가 끊겨요. 제 말 들리세요?","breaking up → '브레이킹업' 연결, hear의 h 살리기"]]},
+{t:"일정 잡기", sum:"가능한 시간 묻기, 일정 변경·확정하기", s:[
+["Are you free on Thursday afternoon?","목요일 오후에 시간 되세요?","Thursday의 th는 혀를 살짝 내밀고, free의 f는 윗니를 아랫입술에"],
+["Does two o'clock work for you?","2시 괜찮으세요?","work는 혀를 말아 '워ㄹ크' (walk와 구분)"],
+["Let's push the meeting to next week.","회의를 다음 주로 미룹시다.","next week → '넥스윅' (t 탈락)"],
+["Something came up, so I need to reschedule.","일이 생겨서 일정을 변경해야 해요.","came up → '케이멉', need to → '니투'"],
+["I'll send you a calendar invite.","일정 초대 보내드릴게요.","send you → '센쥬'"],
+["Let me check my schedule and get back to you.","일정 확인하고 다시 알려드릴게요.","get back to you → '겟백투유', schedule → '스께쥴'"]]},
+{t:"의견 말하기", sum:"내 생각을 부드럽게 말하고 상대 의견을 묻는 표현", s:[
+["In my opinion, we should wait.","제 생각엔 기다려야 합니다.","opinion은 'pin'에 강세"],
+["I think it's worth trying.","시도해 볼 가치가 있다고 생각해요.","think의 th, worth 끝 th 모두 혀를 이 사이에"],
+["To be honest, I'm not sure about that.","솔직히 그건 잘 모르겠어요.","honest의 h는 묵음 '아니스트', about that → '어바웃댓'"],
+["From my point of view, the cost is too high.","제 관점에서는 비용이 너무 높아요.","point of → '포인터브'"],
+["It might be better to start small.","작게 시작하는 게 나을 수도 있어요.","better → '베러'(t 플랩)"],
+["What do you think?","어떻게 생각하세요?","What do you → '워루유', think의 th"]]},
+{t:"동의·반대하기", sum:"공감·동의하고, 정중하게 반대하거나 절충하는 표현", s:[
+["I couldn't agree more.","전적으로 동의합니다.","couldn't 끝 t는 멈추듯 '쿠든ㅌ'"],
+["That's a good point.","좋은 지적이에요.","That's a → '대처', point 끝 t 멈춤"],
+["I see what you mean, but I have a different idea.","무슨 말인지 알겠는데, 저는 생각이 좀 달라요.","what you → '와츄', have a → '해버'"],
+["I'm afraid I have to disagree.","죄송하지만 동의하기 어렵습니다.","afraid의 f, have to → '해프투'"],
+["Let's meet halfway.","서로 절충합시다.","halfway의 L은 묵음 '해프웨이'"],
+["That makes sense.","일리가 있네요.","makes sense → '메익센스' (s 겹침)"]]},
+{t:"쇼핑·반품", sum:"물건 찾기, 가격 묻기, 교환·환불하기", s:[
+["I'm just looking, thanks.","그냥 둘러보는 중이에요.","just looking → '저스루킹' (t 탈락)"],
+["Do you have this in a larger size?","이거 더 큰 사이즈 있나요?","this in a → '디씨너'"],
+["How much is this?","이거 얼마예요?","much is → '머치즈'"],
+["I'd like to return this.","이거 반품하고 싶어요.","return은 'turn'에 강세, r은 혀를 말아서"],
+["Can I get a refund?","환불 받을 수 있나요?","get a → '게러', refund는 're'에 강세"],
+["It doesn't fit me.","사이즈가 안 맞아요.","fit의 f, doesn't → '더즌ㅌ'"]]},
+{t:"길 묻기", sum:"길과 소요시간을 묻고 방향을 설명하는 표현", s:[
+["Excuse me, how do I get to the airport?","실례지만 공항에 어떻게 가나요?","get to the → '겟투더'"],
+["Is it within walking distance?","걸어갈 수 있는 거리인가요?","walking의 L은 묵음 '워킹'"],
+["Go straight and turn left at the light.","직진하다가 신호등에서 좌회전하세요.","left at the → '레프태더', light의 L은 혀끝을 윗잇몸에"],
+["It's on your right.","오른쪽에 있어요.","right의 r은 입술을 둥글게 (light와 구분)"],
+["How long does it take?","얼마나 걸려요?","does it → '더짓'"],
+["I think I'm lost.","길을 잃은 것 같아요.","think의 th, lost의 L"]]},
+{t:"주말 이야기", sum:"지난 주말을 말하고 계획을 묻는 표현", s:[
+["How was your weekend?","주말 어땠어요?","How was your → '하우워쥬어'"],
+["I went hiking with my family.","가족과 하이킹 갔어요.","went 끝 t 멈춤, family의 f"],
+["I just stayed home and relaxed.","그냥 집에서 쉬었어요.","relaxed의 -ed는 't' 소리 '릴랙스트'"],
+["We had a barbecue in the backyard.","뒷마당에서 바비큐 했어요.","had a → '해러'"],
+["Do you have any plans for the weekend?","주말에 계획 있어요?","have any → '해베니'"],
+["I'm planning to watch the game.","경기 볼 계획이에요.","planning to → '플래닝투'"]]},
+{t:"회의 진행하기", sum:"회의 시작·안건 전환·질의·마무리 표현", s:[
+["Let's get started.","시작합시다.","started → '스따릿' (t 플랩)"],
+["The purpose of today's meeting is to review the schedule.","오늘 회의 목적은 일정 검토입니다.","purpose of → '퍼ㄹ퍼서브'"],
+["Let's move on to the next item.","다음 안건으로 넘어갑시다.","move on to → '무반투', v는 윗니를 아랫입술에"],
+["Does anyone have any questions?","질문 있으신가요?","anyone → '에니원'"],
+["Let's wrap it up here.","여기서 마무리합시다.","wrap it up → '래피럽' (w 묵음)"],
+["I'll send out the meeting minutes.","회의록 보내드리겠습니다.","send out → '센다웃'"]]},
+{t:"진행 상황·지연 보고", sum:"진척도와 지연 사유를 보고하고 후속 공유를 약속하는 표현", s:[
+["We're on track to finish by Friday.","금요일까지 끝낼 수 있도록 예정대로 가고 있습니다.","track의 tr은 '츄'에 가까운 소리"],
+["We're running a little behind schedule.","일정보다 약간 늦어지고 있습니다.","behind는 'hind'에 강세"],
+["The parts haven't arrived yet.","부품이 아직 안 들어왔습니다.","haven't arrived → '해븐어라이브드'"],
+["We expect a two-day delay.","이틀 정도 지연이 예상됩니다.","expect a → '익스펙터'"],
+["I'll keep you posted.","계속 상황 알려드리겠습니다.","keep you → '키퓨'"],
+["Here's a quick update on the project.","프로젝트 관련 간단히 업데이트 드립니다.","Here's a → '히어저', update는 'up'에 강세"]]},
+{t:"현장 문제 해결", sum:"문제를 파악하고 원인과 임시 조치를 논의하는 표현", s:[
+["What seems to be the problem?","무엇이 문제인 것 같나요?","seems to be → '심즈투비'"],
+["The machine keeps stopping.","기계가 계속 멈춰요.","keeps stopping → '킵스따핑'"],
+["Let's find the root cause.","근본 원인을 찾아봅시다.","root → '루웃', cause의 s는 z 소리"],
+["Can you show me where it happened?","어디서 발생했는지 보여주시겠어요?","where it → '웨어릿'"],
+["We need a temporary fix for now.","우선 임시 조치가 필요합니다.","need a → '니더', fix의 f"],
+["Safety comes first.","안전이 최우선입니다.","safety와 first의 f는 윗니를 아랫입술에"]]},
+{t:"정중하게 부탁하기", sum:"상대에게 부담 주지 않고 부탁·요청하는 표현", s:[
+["Would you mind helping me with this?","이것 좀 도와주실 수 있나요?","Would you → '우쥬'"],
+["Could you do me a favor?","부탁 하나 들어주실래요?","do me a → '두미어', favor의 v"],
+["Is it possible to get it by tomorrow?","내일까지 받을 수 있을까요?","get it by → '게리바이'"],
+["I'd appreciate it if you could check this.","이것 좀 확인해 주시면 감사하겠습니다.","appreciate it → '어프리시에이릿'"],
+["Sorry to bother you.","귀찮게 해서 죄송해요.","bother의 th → '바더'"],
+["Thanks for your help.","도와주셔서 감사합니다.","thanks의 th, for your → '퍼유어'"]]},
+{t:"사과·불만 처리", sum:"책임을 인정하고 해결을 약속하는 표현", s:[
+["I apologize for the inconvenience.","불편을 드려 죄송합니다.","apologize는 'pol'에 강세"],
+["That was my mistake.","제 실수였습니다.","mistake → '미스떼익'"],
+["Let me look into it right away.","바로 확인해 보겠습니다.","look into it → '루킨투잇', right away → '라이러웨이'"],
+["It won't happen again.","다시는 이런 일 없을 겁니다.","won't는 '워운ㅌ' (want와 구분), happen again → '해프너겐'"],
+["I understand your concern.","우려하시는 점 이해합니다.","concern은 'cern'에 강세"],
+["We'll do our best to fix it.","해결하도록 최선을 다하겠습니다.","best to → '베스투', fix it → '픽싯'"]]},
+{t:"공항·호텔", sum:"체크인·예약 확인·지연·수하물 표현", s:[
+["I'd like to check in, please.","체크인하고 싶습니다.","check in → '체킨'"],
+["I have a reservation under Kim.","김 이름으로 예약했습니다.","reservation의 s는 z 소리 '레저베이션'"],
+["What time is checkout?","체크아웃은 몇 시인가요?","What time → '왓타임' (t 한 번만)"],
+["Is breakfast included?","조식 포함인가요?","breakfast → '브렉퍼스트'"],
+["My flight was delayed.","제 비행기가 지연됐어요.","flight의 fl을 분명히"],
+["Where can I pick up my luggage?","짐은 어디서 찾나요?","pick up → '피컵'"]]},
+{t:"손님 맞이·안내", sum:"방문객을 환영하고 안내·접대하는 표현", s:[
+["Welcome to our plant.","저희 공장에 오신 걸 환영합니다.","plant의 L을 분명히 (prant 아님)"],
+["Did you have a good flight?","비행은 편안하셨나요?","Did you → '디쥬', have a → '해버'"],
+["Let me show you around.","제가 안내해 드리겠습니다.","show you around → '쇼유어라운드'"],
+["Please help yourself to some coffee.","커피 편하게 드세요.","help yourself → '헬퓨어셀프'"],
+["If you have any questions, just let me know.","질문 있으시면 말씀해 주세요.","let me know → '레미노우'"],
+["Thank you for coming all this way.","먼 길 와 주셔서 감사합니다.","all this way → '올디스웨이'"]]},
+{t:"감정·리액션", sum:"대화에 자연스럽게 반응하는 짧은 표현", s:[
+["That sounds great!","좋네요!","sounds great → '사운즈그레잇'"],
+["I'm glad to hear that.","그 말을 들으니 기쁘네요.","glad to → '글래투'"],
+["I'm sorry to hear that.","그 말을 들으니 안타깝네요.","sorry의 r은 혀를 말아서"],
+["No way! Are you serious?","말도 안 돼! 진짜요?","serious는 'se'에 강세"],
+["That's too bad.","안됐네요.","That's too → '대츠투'"],
+["Good for you!","잘됐네요!","Good for you → '굿퍼유'"]]},
+{t:"날씨·스포츠 스몰토크", sum:"날씨와 경기 이야기로 대화를 여는 표현", s:[
+["It's really hot and humid today.","오늘 정말 덥고 습하네요.","hot and → '하랜'"],
+["Looks like it's going to rain.","비가 올 것 같아요.","going to → '거나', like it's → '라이킷츠'"],
+["Did you watch the game last night?","어젯밤 경기 봤어요?","last night → '래스나잇'"],
+["Who are you rooting for?","어느 팀 응원해요?","rooting for → '루딩퍼'"],
+["What a close game!","정말 접전이었어요!","close(접전)의 s는 무성음 '클로우스'"],
+["Stay cool out there.","시원하게 지내세요.","out there → '아웃데어'"]]}
+];
+
+// 추천 유튜브 영어회화 채널 (구독자 수는 변동되므로 앱에서 직접 확인)
+const CHANNELS = [
+ {n:"BBC Learning English", d:"영국 BBC 공식, 대표적인 대형 영어학습 채널", q:"BBC Learning English"},
+ {n:"English with Lucy", d:"생활 회화·어휘·발음", q:"English with Lucy"},
+ {n:"Speak English With Vanessa", d:"미국식 일상 회화", q:"Speak English With Vanessa"},
+ {n:"mmmEnglish", d:"회화·발음·억양", q:"mmmEnglish"},
+ {n:"Rachel's English", d:"미국식 발음 전문", q:"Rachel's English"},
+ {n:"EnglishClass101", d:"초급부터 단계별 회화", q:"EnglishClass101"},
+ {n:"올리버쌤", d:"한국인을 위한 미국 생활 영어", q:"올리버쌤"}
+];
